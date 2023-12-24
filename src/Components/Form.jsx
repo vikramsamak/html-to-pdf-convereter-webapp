@@ -29,11 +29,12 @@ function Form({ generatePDF, openModal, setErrorMsg }) {
               {
                 autocompletion: true,
                 indentOnInput: true,
-                syntaxHighlighting:true
+                syntaxHighlighting: true
 
               }
             }
             onChange={(value) => { setHtml(value) }} />
+          <p className="text-foreground-500 ml-2">*Does not support external CSS.(Bootstrap,Tailwind)</p>
         </CardBody>
         <CardFooter className="w-full flex gap-4">
           <Button
