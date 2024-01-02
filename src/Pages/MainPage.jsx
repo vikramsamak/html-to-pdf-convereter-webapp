@@ -13,7 +13,7 @@ function MainPage() {
 
   const getPdfFromHtml = async (htmlContent) => {
     try {
-      const response = await axios.post('http://localhost:3001/generate-pdf', { htmlContent: htmlContent });
+      const response = await axios.post('https://html-to-pdf-microservice.onrender.com/convert', { htmlContent: htmlContent });
       return response.data
     } catch (error) {
       return Promise.reject(error.message);
