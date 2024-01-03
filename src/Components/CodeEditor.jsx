@@ -5,7 +5,7 @@ import ReactCodeMirror from "@uiw/react-codemirror";
 import { html } from '@codemirror/lang-html'
 import { vscodeDark } from "@uiw/codemirror-theme-vscode";
 
-function Form({ generatePDF, openModal, setNotification }) {
+function CodeEditor({ generatePDF, openModal, setNotification }) {
   const [Html, setHtml] = useState("");
 
   return (
@@ -69,10 +69,10 @@ function Form({ generatePDF, openModal, setNotification }) {
   )
 }
 
-Form.propTypes = {
+CodeEditor.propTypes = {
   generatePDF: PropTypes.func,
   openModal: PropTypes.func,
   setNotification: PropTypes.func
 };
 
-export default Form
+export default CodeEditor;

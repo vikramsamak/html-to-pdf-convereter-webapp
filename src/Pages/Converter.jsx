@@ -1,5 +1,4 @@
 import { useMutation } from "@tanstack/react-query";
-import Form from "../Components/Form";
 import PdfPreview from "../Components/PdfPreview";
 import axios from "axios";
 import { MICRO_SERVICE_URL } from "../Helpers/Constants";
@@ -7,6 +6,7 @@ import PropTypes from 'prop-types'
 import { Button } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { IoIosArrowUp } from "react-icons/io";
+import CodeEditor from "../Components/CodeEditor";
 
 function Converter({ openModal, setNotification }) {
 
@@ -47,7 +47,7 @@ function Converter({ openModal, setNotification }) {
   return (
     <section className="min-h-screen max-h-full">
       <section className="relative min-h-screen px-6 py-4 flex flex-wrap sm:flex-wrap md:flex-wrap lg:flex-wrap xl:flex-wrap">
-        <Form
+        <CodeEditor
           generatePDF={(htmlContent) => mutateAsync(htmlContent)}
           openModal={openModal}
           setNotification={setNotification} />
