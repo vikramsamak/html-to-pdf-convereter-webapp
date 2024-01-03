@@ -1,0 +1,1 @@
+export const MICRO_SERVICE_URL = "https://html-to-pdf-microservice.onrender.com/convert"
