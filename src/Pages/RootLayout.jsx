@@ -5,7 +5,7 @@ import Converter from "./Converter"
 import ContactMe from "./ContactMe"
 import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/react"
 import { useState } from "react"
-import Status from "./Status"
+
 
 function RootLayout() {
     const [notification, setNotification] = useState('')
@@ -41,7 +41,6 @@ function RootLayout() {
             <Routes>
                 <Route index element={<HomePage />} />
                 <Route path="/converter" element={<Converter openModal={onOpen} setNotification={setNotification} />} />
-                <Route path="/apistatus" element={<Status />} />
                 <Route path="/contactme" element={<ContactMe openModal={onOpen} setNotification={setNotification} />} />
             </Routes>
         </main>
