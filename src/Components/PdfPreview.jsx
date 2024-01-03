@@ -9,7 +9,7 @@ import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 function PdfPreview({ pdfData, errorStatus, loadingStatus, errorMsg }) {
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
   return (
-    <section className="px-6  py-6 w-full sm:w-full md:w-full lg:w-3/5">
+    <section className="px-6 py-4 w-full sm:w-full md:w-full lg:w-3/5 xl:w-3/5">
       <Card>
         <CardHeader className="flex justify-center">
           <p className="py-2 px-2">
@@ -17,7 +17,7 @@ function PdfPreview({ pdfData, errorStatus, loadingStatus, errorMsg }) {
           </p>
         </CardHeader>
         <Divider />
-        <CardBody className="h-[400px] flex">
+        <CardBody className="h-[400px]">
           <div className="h-full flex items-center justify-center">
             {
               errorStatus ? (
