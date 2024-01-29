@@ -16,12 +16,12 @@ function HomePage() {
                 <p className="mb-2 leading-relaxed  md:mb-2 xl:text-lg">Transforming Code into Polished Documents...</p>
                 <p className="mb-6 leading-relaxed  md:mb-6 xl:text-lg">Effortless HTML to PDF Conversion at Your Fingertips!</p>
                 <div className="flex w-full flex-col gap-2.5 sm:flex-row sm:justify-center">
-                  <Link href="https://github.com/vikramsamak/html-to-pdf-microservice" target='_blank' className="inline-block rounded-lg bg-[#006FEE] px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">
+                  <Link href="https://github.com/vikramsamak/html-to-pdf-microservice" isExternal className="inline-block rounded-lg bg-[#006FEE] px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">
                     Docs
                   </Link>
-                  <NavLink to='/converter' className="inline-block rounded-lg bg-[#006FEE] px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">
+                  <Link href='/converter' className="inline-block rounded-lg bg-[#006FEE] px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">
                     Try this
-                  </NavLink>
+                  </Link>
                 </div>
               </div>
             </section>

@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, NavbarMenuToggle, NavbarMenu, NavbarMenuItem } from "@nextui-org/react";
-import { NavLink } from "react-router-dom";
 
 export default function App() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <Navbar onMenuOpenChange={setIsMenuOpen}>
+        <Navbar isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
             <NavbarContent>
                 <NavbarMenuToggle
                     aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -18,66 +17,62 @@ export default function App() {
             </NavbarContent>
             <NavbarContent justify="end" className="hidden sm:flex gap-4">
                 <NavbarItem>
-                    <Link>
-                        <NavLink to='/'>
-                            Home
-                        </NavLink>
+                    <Link href="/">
+                        Home
                     </Link>
                 </NavbarItem>
                 <NavbarItem>
-                    <Link>
-                        <NavLink to='/converter'>
-                            Converter
-                        </NavLink>
+                    <Link href="/converter">
+                        Converter
                     </Link>
                 </NavbarItem>
                 <NavbarItem>
-                    <Link href="https://stats.uptimerobot.com/o0EV0slklD" target="_blank">
+                    <Link href="https://stats.uptimerobot.com/o0EV0slklD" isExternal>
                         API Status
                     </Link>
                 </NavbarItem>
                 <NavbarItem>
-                    <Link>
-                        <NavLink to='/contactme'>
-                            Contact Me
-                        </NavLink>
+                    <Link href="/contactme">
+                        Contact Me
                     </Link>
                 </NavbarItem>
             </NavbarContent>
             <NavbarMenu className="bg-black">
                 <NavbarMenuItem>
                     <Link
+                        href="/"
                         className="w-full"
                         size="lg"
+                        onPress={() => { setIsMenuOpen(!isMenuOpen) }}
                     >
-                        <NavLink to='/'>
-                            Home
-                        </NavLink>
+                        Home
                     </Link>
                     <Link
+                        href="/converter"
                         className="w-full"
                         size="lg"
+                        onPress={() => { setIsMenuOpen(!isMenuOpen) }}
                     >
-                        <NavLink to='/converter'>
-                            Converter
-                        </NavLink>
+                        Converter
                     </Link>
                     <Link
+                        href="https://stats.uptimerobot.com/o0EV0slklD"
+                        isExternal
                         className="w-full"
                         size="lg"
+                        onPress={() => { setIsMenuOpen(!isMenuOpen) }}
                     >
                         API Status
                     </Link>
                     <Link
+                        href="/contactme"
                         className="w-full"
                         size="lg"
+                        onPress={() => { setIsMenuOpen(!isMenuOpen) }}
                     >
-                        <NavLink to='/contactme'>
-                            Contact Me
-                        </NavLink>
+                        Contact Me
                     </Link>
                 </NavbarMenuItem>
-
             </NavbarMenu>
         </Navbar>
     );

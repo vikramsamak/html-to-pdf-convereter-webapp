@@ -8,11 +8,9 @@ import { BrowserRouter } from 'react-router-dom'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-      <NextUIProvider>
-        <main className="dark text-foreground bg-background">
-          <App />
-        </main>
-      </NextUIProvider>
+      <main className="dark text-foreground bg-background">
+        <App />
+      </main>
     </BrowserRouter>
   </React.StrictMode>,
 )
