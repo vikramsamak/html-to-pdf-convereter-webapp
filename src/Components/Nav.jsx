@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, NavbarMenuToggle, NavbarMenu, NavbarMenuItem } from "@nextui-org/react";
+import { useLocation } from "react-router-dom";
 
 export default function App() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { pathname } = useLocation();
 
     return (
         <Navbar isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
@@ -12,27 +14,27 @@ export default function App() {
                     className="sm:hidden"
                 />
                 <NavbarBrand>
-                    <p className="font-bold text-inherit">HTML TO PDF CONVERTER</p>
+                    <Link href="/" className="font-bold text-inherit">HTML TO PDF CONVERTER</Link>
                 </NavbarBrand>
             </NavbarContent>
             <NavbarContent justify="end" className="hidden sm:flex gap-4">
                 <NavbarItem>
-                    <Link href="/">
+                    <Link href="/" color={pathname === "/" ? "primary" : "foreground"}>
                         Home
                     </Link>
                 </NavbarItem>
                 <NavbarItem>
-                    <Link href="/converter">
+                    <Link href="/converter" color={pathname === "/converter" ? "primary" : "foreground"} >
                         Converter
                     </Link>
                 </NavbarItem>
                 <NavbarItem>
-                    <Link href="https://stats.uptimerobot.com/o0EV0slklD" isExternal>
+                    <Link href="https://stats.uptimerobot.com/o0EV0slklD" isExternal color="foreground">
                         API Status
                     </Link>
                 </NavbarItem>
                 <NavbarItem>
-                    <Link href="/contactme">
+                    <Link href="/contactme" color={pathname === "/contactme" ? "primary" : "foreground"}>
                         Contact Me
                     </Link>
                 </NavbarItem>
