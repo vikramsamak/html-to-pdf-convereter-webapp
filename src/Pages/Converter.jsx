@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import { Button } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { IoIosArrowUp } from "react-icons/io";
-import CodeEditor from "../Components/CodeEditor";
+import HtmlInputs from "../Components/HtmlInputs";
 
 function Converter({ openModal, setNotification }) {
 
@@ -24,11 +24,22 @@ function Converter({ openModal, setNotification }) {
     };
   }, []);
 
+  const genratePdf = async (inputs) => {
+    let body = undefined;
+    let serviceUrl = undefined
+    if (inputs.code) {
+      body = { htmlCode: inputs.code }
+      serviceUrl = `${MICRO_SERVICE_URL}/convert-from-code`
+    }
+    else if (inputs.file) {
+      const formData = new FormData();
+      formData.append("htmlFile", inputs.file)
+      body = formData;
+      serviceUrl = `${MICRO_SERVICE_URL}/convert-from-file`
+    }
 
-
-  const getPdfFromHtml = async (htmlContent) => {
     try {
-      const response = await axios.post(MICRO_SERVICE_URL, { htmlContent: htmlContent });
+      const response = await axios.post(serviceUrl, body);
       return response.data
     } catch (error) {
       return Promise.reject(error.message);
@@ -42,13 +53,13 @@ function Converter({ openModal, setNotification }) {
     });
   };
 
-  const { data, error, isError, isPending, mutateAsync } = useMutation({ mutationFn: getPdfFromHtml })
+  const { data, error, isError, isPending, mutateAsync } = useMutation({ mutationFn: genratePdf })
 
   return (
     <section className="min-h-screen max-h-full">
       <section className="relative min-h-screen px-6 py-4 flex flex-wrap sm:flex-wrap md:flex-wrap lg:flex-wrap xl:flex-wrap">
-        <CodeEditor
-          generatePDF={(htmlContent) => mutateAsync(htmlContent)}
+        <HtmlInputs
+          generatePDF={(htmlCode, htmlFile) => { mutateAsync({ code: htmlCode, file: htmlFile }) }}
           openModal={openModal}
           setNotification={setNotification} />
         <PdfPreview
