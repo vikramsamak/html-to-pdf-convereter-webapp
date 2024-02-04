@@ -2,12 +2,13 @@ import { Button, Card, CardBody, CardFooter, CardHeader, Divider, Link, Spinner 
 import PropTypes from 'prop-types';
 import { Worker } from '@react-pdf-viewer/core';
 import { Viewer } from '@react-pdf-viewer/core';
-import '@react-pdf-viewer/core/lib/styles/index.css';
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
+import '@react-pdf-viewer/core/lib/styles/index.css';
 
 function PdfPreview({ pdfData, errorStatus, loadingStatus, errorMsg }) {
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
+  
   return (
     <section className="px-6 py-4 w-full sm:w-full md:w-full lg:w-3/5 xl:w-3/5">
       <Card>
@@ -32,7 +33,7 @@ function PdfPreview({ pdfData, errorStatus, loadingStatus, errorMsg }) {
                       height: '100%',
                     }}
                   >
-                    <Viewer fileUrl={pdfData} plugins={[defaultLayoutPluginInstance]} />
+                    <Viewer fileUrl={pdfData} plugins={[defaultLayoutPluginInstance]} theme="dark" />
                   </div>
                 </Worker>
               ) : (

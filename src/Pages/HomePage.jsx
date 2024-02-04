@@ -2,7 +2,6 @@ import { FaExchangeAlt } from 'react-icons/fa'
 import { BiCog } from 'react-icons/bi'
 import { AiOutlineCode, AiOutlineEye } from 'react-icons/ai'
 import { Link } from '@nextui-org/react';
-import { NavLink } from 'react-router-dom';
 
 function HomePage() {
   return (
@@ -13,14 +12,13 @@ function HomePage() {
             <section className="flex flex-col items-center">
               <div className="flex max-w-xl flex-col items-center pb-0 pt-8 text-center sm:pb-16 lg:pb-32 lg:pt-32">
                 <h1 className="mb-4 text-4xl font-bold sm:text-5xl md:mb-6 md:text-6xl">HTML TO PDF CONVERETER</h1>
-                <p className="mb-2 leading-relaxed  md:mb-2 xl:text-lg">Transforming Code into Polished Documents...</p>
                 <p className="mb-6 leading-relaxed  md:mb-6 xl:text-lg">Effortless HTML to PDF Conversion at Your Fingertips!</p>
                 <div className="flex w-full flex-col gap-2.5 sm:flex-row sm:justify-center">
                   <Link href="https://github.com/vikramsamak/html-to-pdf-microservice" isExternal className="inline-block rounded-lg bg-[#006FEE] px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">
                     Docs
                   </Link>
                   <Link href='/converter' className="inline-block rounded-lg bg-[#006FEE] px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">
-                    Try this
+                    Test this
                   </Link>
                 </div>
               </div>
@@ -39,7 +37,7 @@ function HomePage() {
                 </div>
                 <div>
                   <h3 className="mb-2 text-lg font-semibold md:text-xl">Seamless Conversion</h3>
-                  <p className="mb-2">Effortless transformation of HTML code into high-quality PDF documents with just a few clicks.</p>
+                  <p className="mb-2">Effortless transformation of HTML into high-quality PDF documents with just a few clicks.</p>
                 </div>
               </div>
 
