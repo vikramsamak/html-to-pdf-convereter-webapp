@@ -1,15 +1,27 @@
-import { useRef, useState } from "react";
-import { Button, Card, CardBody, CardFooter, CardHeader, Divider, Tabs, Tab, Input } from "@nextui-org/react";
+import { useState } from "react";
+import { Button, Card, CardBody, CardFooter, CardHeader, Divider, Tabs, Tab } from "@nextui-org/react";
 import PropTypes from 'prop-types';
 import ReactCodeMirror from "@uiw/react-codemirror";
 import { html } from '@codemirror/lang-html';
 import { vscodeDark } from "@uiw/codemirror-theme-vscode";
+import { useDropzone } from 'react-dropzone';
 
 function HtmlInputs({ generatePDF, openModal, setNotification }) {
   const [HtmlCode, setHtmlCode] = useState("");
-  const [HtmlFile, setHtmlFile] = useState();
   const [isFileMenuSelected, setFileMenuSelected] = useState(false);
-  const fileInputRef = useRef(null);
+
+  const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
+    accept: {
+      'text/html': ['.html']
+    },
+    maxFiles: 1,
+  });
+
+  const files = acceptedFiles.map(file => (
+    <li key={file.path}>
+      {file.path} - {file.size} bytes
+    </li>
+  ));
 
   return (
     <section className="px-6 py-4 w-full lg:w-2/5 sm:w-full md:w-full xl:w-2/5">
@@ -42,17 +54,22 @@ function HtmlInputs({ generatePDF, openModal, setNotification }) {
             </Tab>
             <Tab key={"2"} title={"HTML File"}>
               <div className="w-full h-full">
-                <Input
-                  isRequired
-                  type="file"
-                  className="p-4"
-                  variant="underlined"
-                  accept=".html"
-                  ref={fileInputRef}
-                  onChange={(e) => { setHtmlFile(e.target.files[0]) }}
-                />
+                <div {...getRootProps({ className: 'p-8 text-center bg-zinc-700 rounded-md' })}>
+                  <input {...getInputProps()} />
+                  <p className="text-center text-sm p-2">
+                    Drag &apos;n&apos; drop file here, or click to select file.
+                  </p>
+                </div>
+                {
+                  acceptedFiles[0] && (
+                    <div className="text-center mt-2">
+                      <h4>Selected File Details</h4>
+                      <ul>{files}</ul>
+                    </div>
+                  )
+                }
               </div>
-              <div className="text-center">
+              <div className="text-center mt-2">
                 <p className="text-sm">
                   We do not save your files on the server; they are deleted after a successful conversion.
                 </p>
@@ -62,16 +79,16 @@ function HtmlInputs({ generatePDF, openModal, setNotification }) {
         </CardBody>
         <CardFooter className="w-full flex gap-4">
           <Button
-            className="w-1/2"
+            className={`${isFileMenuSelected ? 'w-full' : 'w-1/2'}`}
             variant="ghost"
             color="primary"
             onClick={() => {
               if (isFileMenuSelected) {
-                if (!HtmlFile) {
+                if (acceptedFiles.length === 0 || !acceptedFiles[0]) {
                   setNotification('Please select an HTML file.');
                   openModal();
                 } else {
-                  generatePDF(null, HtmlFile);
+                  generatePDF(null, acceptedFiles[0]);
                 }
               } else {
                 if (HtmlCode.trim().length === 0) {
@@ -86,10 +103,10 @@ function HtmlInputs({ generatePDF, openModal, setNotification }) {
             {isFileMenuSelected ? "Upload" : "Generate PDF"}
           </Button>
           <Button
-            className="w-1/2"
+            className={`${isFileMenuSelected ? 'hidden' : 'w-1/2'}`}
             variant="ghost"
             color="danger"
-            onClick={() => { isFileMenuSelected ? fileInputRef.current.value = null : setHtmlCode('') }}>
+            onClick={() => { setHtmlCode('') }}>
             Clear
           </Button>
         </CardFooter>
